@@ -1,17 +1,14 @@
 package com.iapps.news.technewssample
 
 import android.content.Context
-import android.util.Log
 import okhttp3.Cache
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import java.io.File
-import java.io.IOException
 import java.lang.ref.WeakReference
 
 object NewsService {
@@ -22,7 +19,7 @@ object NewsService {
             .cache(Cache(cacheDir, cacheSize))
             .build()
         Retrofit.Builder()
-            //.client(client)
+            .client(client)
             .baseUrl("https://api.myjson.com/")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
@@ -36,18 +33,6 @@ object NewsService {
     }
 
     fun getNews(callback: Callback) {
-//        val req = Request.Builder().url("https://api.myjson.com/bins/nl6jh").build()
-//        val client = OkHttpClient.Builder().build()
-//        client.newCall(req).enqueue(object : okhttp3.Callback {
-//            override fun onFailure(call: okhttp3.Call, e: IOException) {
-//                TODO("not implemented")
-//            }
-//
-//            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-//                val bodyText = response.body()?.string()
-//                Log.d("", bodyText)
-//            }
-//        })
         val queue = QueueCall(callback)
         service.getNews()
             .enqueue(queue)
