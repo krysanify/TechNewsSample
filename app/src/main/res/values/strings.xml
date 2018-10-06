@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TechNewsSample</string>
+    <string name="btn_story">Full Story</string>
+    <string name="action_settings">Settings</string>
+</resources>

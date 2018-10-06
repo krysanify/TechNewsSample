@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewsInfoFragment">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_padding"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:text="Sample News Info" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/image_media"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/news_image_height"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
+        tools:src="@drawable/place_holder" />
+
+    <TextView
+        android:id="@+id/text_abstract"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/image_media" />
+
+    <Button
+        android:id="@+id/btn_story"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/btn_story"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_abstract" />
+</androidx.constraintlayout.widget.ConstraintLayout>

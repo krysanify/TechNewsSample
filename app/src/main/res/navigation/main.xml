@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/news_list_fragment">
+
+    <fragment
+        android:id="@+id/news_list_fragment"
+        android:name="com.iapps.news.technewssample.NewsListFragment"
+        tools:layout="@layout/fragment_news_list" />
+
+    <fragment
+        android:id="@+id/news_info_fragment"
+        android:name="com.iapps.news.technewssample.NewsInfoFragment"
+        tools:layout="@layout/fragment_news_info" />
+
+</navigation>
