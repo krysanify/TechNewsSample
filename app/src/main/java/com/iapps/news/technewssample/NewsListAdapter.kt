@@ -1,14 +1,13 @@
 package com.iapps.news.technewssample
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.drawee.backends.pipeline.Fresco
-import com.facebook.drawee.view.SimpleDraweeView
-import com.facebook.imagepipeline.request.ImageRequest
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import java.util.Locale.ENGLISH
 
 /**
@@ -36,23 +35,29 @@ class NewsListAdapter internal constructor(
     inner class ViewHolder internal constructor(internal val root: View) :
         RecyclerView.ViewHolder(root) {
         private val titleText: TextView = root.findViewById(R.id.item_title)
-        private val imageView: SimpleDraweeView = root.findViewById(R.id.item_image)
+        private val bylineText: TextView = root.findViewById(R.id.item_byline)
+        private val imageView: ImageView = root.findViewById(R.id.item_image)
 
         override fun toString(): String {
             return String.format(ENGLISH, "%s > %s", super.toString(), titleText.text)
         }
 
         internal fun bind(news: NewsEntity, listener: View.OnClickListener) {
-            titleText.text = news.title
-            val mediaUrl = news.multimedia[0].url
-            val request = ImageRequest.fromUri(Uri.parse(mediaUrl))
-            imageView.controller = Fresco.newDraweeControllerBuilder()
-                .setImageRequest(request)
-                .setOldController(imageView.controller)
-                .build()
-
             root.tag = news
             root.setOnClickListener(listener)
+
+            titleText.text = news.title
+            bylineText.text = news.byline
+
+            val mediaUrl = news.mediaUrl() ?: return
+            val caption = imageView.context.getString(R.string.place_holder)
+            imageView.contentDescription = news.mediaCaption(caption)
+            Glide.with(root)
+                .load(mediaUrl)
+                .apply(RequestOptions()
+                    .placeholder(R.drawable.place_holder)
+                    .fitCenter())
+                .into(imageView)
         }
     }
 }

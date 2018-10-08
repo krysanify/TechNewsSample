@@ -45,6 +45,10 @@ data class NewsEntity(
         )
     }
 
+    fun mediaUrl(index: Int = 0) = if (multimedia.isEmpty()) null else multimedia[index].url
+    fun mediaCaption(fallback: String, index: Int = 0) =
+        if (multimedia.isEmpty()) fallback else multimedia[index].caption
+
     companion object CREATOR : Parcelable.Creator<NewsEntity> {
         override fun createFromParcel(parcel: Parcel): NewsEntity {
             return NewsEntity(parcel)

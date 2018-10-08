@@ -14,13 +14,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         tools:text="Sample News Info" />
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/image_media"
         android:layout_width="match_parent"
         android:layout_height="@dimen/news_image_height"
-        android:scaleType="fitCenter"
         app:layout_constraintTop_toBottomOf="@id/text_title"
-        tools:src="@drawable/place_holder" />
+        tools:src="@drawable/place_holder"
+        android:contentDescription="@string/place_holder" />
 
     <TextView
         android:id="@+id/text_abstract"
